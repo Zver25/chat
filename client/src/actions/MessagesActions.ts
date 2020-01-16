@@ -1,0 +1,4 @@
+export enum EMessagesActionTypes {
+	SEND_MESSAGE = 'SEND_MESSAGE',
+	RECEIVE_MESSAGE = 'RECEIVE_MESSAGE'
+}
