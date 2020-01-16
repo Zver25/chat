@@ -1,4 +1,9 @@
-import {TPingPongActionTypes} from "../actions/PingPongActions";
+import {pong, TPingPongActionTypes} from "../actions/PingPongActions";
+import {Dispatch, MiddlewareAPI, Store} from "redux";
+
+import socket from "./socket";
+import {IStore, store} from "./index";
+import Socket = SocketIOClient.Socket;
 
 export enum EPingPongActionTypes {
 	PING = 'PING',
@@ -15,6 +20,18 @@ const initialState: IPingPongState = {
 	pingData: '',
 	pongData: ''
 };
+
+export const pingMiddleware = (api: MiddlewareAPI) => (next: Dispatch) => (action: TPingPongActionTypes) => {
+	const state = api.getState();
+	if (action.type === EPingPongActionTypes.PING) {
+		socket.emit(EPingPongActionTypes.PING, state.pingPong.pingData);
+	}
+	return next(action);
+};
+
+socket.on(EPingPongActionTypes.PONG, (data: string) => {
+	store.dispatch(pong(data));
+});
 
 export const pingPongReducer = (state: IPingPongState = initialState, action: TPingPongActionTypes) => {
 	switch (action.type) {

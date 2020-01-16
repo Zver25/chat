@@ -1,29 +1,22 @@
-import {RECEIVE_MESSAGE, SEND_MESSAGE} from "../actions/MessagesActions";
+import {TMessagesActionTypes} from "../actions/MessagesActions";
 import IMessage from "../type/IMessage";
-import IMessagesState from "../type/IMessagesState";
 
-interface ISentMessage {
-	type: typeof SEND_MESSAGE,
-	message: IMessage
+export enum EMessagesActionTypes {
+	SEND_MESSAGE = 'SEND_MESSAGE',
+	RECEIVE_MESSAGE = 'RECEIVE_MESSAGE'
 }
 
-interface IReceiveMessage {
-	type: typeof RECEIVE_MESSAGE,
-	message: IMessage
+export interface IMessagesState {
+	messages: IMessage[]
 }
-
-type MessagesActionTypes = ISentMessage | IReceiveMessage;
-
-export const sendMessage = (message: IMessage): MessagesActionTypes => ({ type: SEND_MESSAGE, message });
-export const receiveMessage = (message: IMessage): MessagesActionTypes => ({ type: RECEIVE_MESSAGE, message });
 
 const initialState: IMessagesState = {
 	messages: []
 };
 
-export const messagesReducer = (state = initialState, action: MessagesActionTypes): IMessagesState => {
+export const messagesReducer = (state = initialState, action: TMessagesActionTypes): IMessagesState => {
 	switch (action.type) {
-		case RECEIVE_MESSAGE:
+		case EMessagesActionTypes.RECEIVE_MESSAGE:
 			return {
 				messages: [
 					...state.messages,

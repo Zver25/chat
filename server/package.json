@@ -1,19 +1,22 @@
 {
 	"name": "chat-server",
 	"version": "0.0.1",
-	"description": "Simple chat with socket.io",
-	"main": "src/index.ts",
+	"description": "Server for simple chat with socket.io",
+	"main": "build/index.js",
 	"author": "zver",
 	"license": "MIT",
+	"scripts": {
+		"start": "tsc --p ./tsconfig.json && node ./build/index.js",
+		"dev": "tsc-watch --p ./tsconfig.json --onSuccess \"node ./build/index.js\" "
+	},
+	"devDependencies": {
+		"tsc-watch": "^4.0.0",
+		"typescript": "^3.7.4"
+	},
 	"dependencies": {
 		"@types/express": "^4.17.2",
 		"@types/socket.io": "^2.1.4",
 		"express": "^4.17.1",
 		"socket.io": "^2.3.0"
-	},
-	"devDependencies": {
-		"gulp": "^4.0.2",
-		"gulp-typescript": "^6.0.0-alpha.1",
-		"typescript": "^3.7.4"
 	}
 }

@@ -1,9 +1,14 @@
 {
 	"files": [
-		"src/*.ts",
-		"src/model/*.ts"
+		"src/index.ts"
+		//"src/*.ts",
+		//"src/model/*.ts"
+	],
+	"exclude": [
+		"node_modules"
 	],
 	"compilerOptions": {
-		"target": "es5"
+		"target": "es5",
+		"outDir": "./build"
 	}
 }
