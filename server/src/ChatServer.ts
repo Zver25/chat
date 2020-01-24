@@ -2,7 +2,7 @@ import * as Http from 'http';
 import * as Express from 'express';
 import * as SocketIO from 'socket.io';
 
-import Message from "./model/Message";
+import {ServerController} from "./controller/ServerController";
 
 export class ChatServer {
 	public static readonly PORT: number = 3000;
@@ -11,6 +11,7 @@ export class ChatServer {
 	private app: Express.Application;
 	private server: Http.Server;
 	private io: SocketIO.Server;
+	private serverController: ServerController;
 
 	public static getPort(): number {
 		return parseInt(process.env.PORT) || ChatServer.PORT;
@@ -40,17 +41,7 @@ export class ChatServer {
 
 	private createIO(): void {
 		this.io = SocketIO(this.server);
-		this.io.on('connection', (socket) => {
-			console.log('Connected client');
-			socket.on('message', (message: Message) => {
-				console.log('receive message = %s', JSON.stringify(message));
-				this.io.emit('message', message);
-			});
-			socket.on('PING', (data) => {
-				console.log('PING: data = %s', JSON.stringify(data));
-				socket.emit('PONG', data);
-			})
-		});
+		this.serverController = new ServerController(this.io);
 	}
 
 	private serveStatic(): void {
