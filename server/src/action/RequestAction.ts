@@ -1,4 +1,4 @@
-export interface RequestAction {
+export default interface RequestAction {
 
 	action(request: any)
 

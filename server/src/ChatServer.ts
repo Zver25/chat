@@ -2,7 +2,7 @@ import * as Http from 'http';
 import * as Express from 'express';
 import * as SocketIO from 'socket.io';
 
-import {ServerController} from "./controller/ServerController";
+import ServerController from "./controller/ServerController";
 
 export class ChatServer {
 	public static readonly PORT: number = 3000;

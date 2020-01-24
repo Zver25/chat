@@ -1,10 +1,10 @@
-import {RequestAction} from "./RequestAction";
-import * as SocketIO from "socket.io";
-import {Socket} from "socket.io";
+import {Server, Socket} from "socket.io";
 
-export class PingPongAction implements RequestAction {
+import RequestAction from "./RequestAction";
 
-	public constructor(private io: SocketIO.Server, private socket: Socket) {
+class PingPongAction implements RequestAction {
+
+	public constructor(private io: Server, private socket: Socket) {
 	}
 
 	action(request: any) {
@@ -12,3 +12,5 @@ export class PingPongAction implements RequestAction {
 	}
 
 }
+
+export default PingPongAction;
