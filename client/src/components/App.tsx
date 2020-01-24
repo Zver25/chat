@@ -3,6 +3,7 @@ import {connect, ConnectedProps} from 'react-redux';
 
 import {AppState} from "../store";
 import {changePingData, ping} from "../actions/PingPongActions";
+import AuthScreen from "./AuthScreen";
 
 import './App.css';
 
@@ -30,11 +31,14 @@ class App extends React.Component<PropsFromRedux> {
 	render() {
 		const {pingData, pongData, changePing} = this.props;
 		return (
+			<AuthScreen onLogin={console.log}/>
+		);
+		/*return (
 			<div className="App">
 				<div>PONG: {pongData}</div>
 				<input value={pingData} onChange={(e) => changePing(e.target.value)} onKeyPress={this.handleKeyEnter}/>
 			</div>
-		);
+		);*/
 	}
 }
 

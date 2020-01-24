@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore, Middleware, Reducer, Store} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 
 import {messagesReducer} from "./Messages";

@@ -1,5 +1,9 @@
 import IMessage from "../type/IMessage";
-import {EMessagesActionTypes} from "../store/Messages";
+
+export enum EMessagesActionTypes {
+	SEND_MESSAGE = 'SEND_MESSAGE',
+	RECEIVE_MESSAGE = 'RECEIVE_MESSAGE'
+}
 
 interface ISentMessage {
 	type: typeof EMessagesActionTypes.SEND_MESSAGE,

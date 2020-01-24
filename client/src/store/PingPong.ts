@@ -1,9 +1,8 @@
 import {pong, TPingPongActionTypes} from "../actions/PingPongActions";
-import {Dispatch, MiddlewareAPI, Store} from "redux";
+import {Dispatch, MiddlewareAPI} from "redux";
 
 import socket from "./socket";
-import {IStore, store} from "./index";
-import Socket = SocketIOClient.Socket;
+import {store} from "./index";
 
 export enum EPingPongActionTypes {
 	PING = 'PING',
