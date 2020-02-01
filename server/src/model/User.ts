@@ -1,9 +1,14 @@
+import * as bcrypt from 'bcrypt';
+
+const saltRounds = 10;
+
 class User {
 
 	private _password: sring;
 	private _token: string;
 
-	constructor(private _id: number, private _name: string) {}
+	constructor(private _id: number, private _name: string) {
+	}
 
 	public toJson(): object {
 		return {
@@ -16,11 +21,11 @@ class User {
 	}
 
 	public setPassword(password: string) {
-		this._password = password;
+		this._password = bcrypt.hashSync(password, saltRounds);
 	}
 
-	public getPassword(): string {
-		return this._password;
+	public checkPassword(password: string): boolean {
+		return bcrypt.compareSync(password, this._password);
 	}
 
 	public setToken(token: string) {
