@@ -33,12 +33,6 @@ class App extends React.Component<PropsFromRedux> {
 		return (
 			<AuthScreen onLogin={console.log}/>
 		);
-		/*return (
-			<div className="App">
-				<div>PONG: {pongData}</div>
-				<input value={pingData} onChange={(e) => changePing(e.target.value)} onKeyPress={this.handleKeyEnter}/>
-			</div>
-		);*/
 	}
 }
 
