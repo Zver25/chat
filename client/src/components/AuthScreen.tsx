@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -14,7 +14,9 @@ interface AuthScreenProps {
 }
 
 const AuthScreen: React.FC<AuthScreenProps> = (props: AuthScreenProps) => {
-
+	const {onLogin} = props;
+	const [userName, setUserName] = useState('');
+	const [password, setPassword] = useState('');
 	return (
 		<Paper className="login-form" elevation={4}>
 			<Grid container direction="column" justify="center" alignItems="stretch" spacing={4}>
@@ -23,16 +25,19 @@ const AuthScreen: React.FC<AuthScreenProps> = (props: AuthScreenProps) => {
 				</Grid>
 				<Grid item>
 					<FormControl fullWidth>
-						<TextField label="Enter user name" />
+						<TextField label="Enter user name" value={userName} 
+							onChange={(e) => setUserName(e.target.value)}/>
 					</FormControl>
 				</Grid>
 				<Grid item>
 					<FormControl fullWidth>
-						<TextField label="Enter password name" type="password" />
+						<TextField label="Enter password name" type="password" 
+							value={password} onChange={(e) => setPassword(e.target.value)}/>
 					</FormControl>
 				</Grid>
 				<Grid item container justify="center" direction="row">
-					<Button variant="contained" color="primary">Login</Button>
+					<Button variant="contained" color="primary" 
+						onClick={() => onLogin(userName, password)}>Login</Button>
 				</Grid>
 			</Grid>
 		</Paper>
