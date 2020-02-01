@@ -6,7 +6,7 @@ import UserDB from "../model/UserDB";
 import User from "../model/User";
 
 interface ILoginParams {
-	name: string,
+	nameName: string,
 	password: string
 }
 
