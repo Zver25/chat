@@ -35,7 +35,7 @@ class LoginAction extends RequestAction {
 			socket.emit('AUTH_FAIL', JSON.stringify({ message: 'Wrong password' }));
 		}
 	}
-	
+
 }
 
 export default LoginAction;
