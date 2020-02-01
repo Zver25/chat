@@ -6,7 +6,7 @@ import UserDB from "../model/UserDB";
 import User from "../model/User";
 
 interface ILoginParams {
-	name: string,
+	userName: string,
 	password: string
 }
 
@@ -22,7 +22,7 @@ class LoginAction extends RequestAction {
 		const socket: Socket = this.connectionController.getSocket();
 		let user: User;
 		try {
-			user = userDB.findByName(request.name);
+			user = userDB.findByName(request.userName);
 		} catch (e) {
 			socket.emit('AUTH_FAIL', JSON.stringify({ message: 'User not found' }));
 		}
