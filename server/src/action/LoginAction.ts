@@ -25,6 +25,7 @@ class LoginAction extends RequestAction {
 			user = userDB.findByName(request.userName);
 		} catch (e) {
 			socket.emit('AUTH_FAIL', JSON.stringify({ message: 'User not found' }));
+			return;
 		}
 		if (user.checkPassword(request.password)) {
 			this.connectionController.setUser(user);
