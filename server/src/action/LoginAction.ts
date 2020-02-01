@@ -28,14 +28,14 @@ class LoginAction extends RequestAction {
 		}
 		if (user.checkPassword(request.password)) {
 			this.connectionController.setUser(user);
-			server.emit('USER_CONNECTED', request);
+			server.emit('USER_CONNECTED', request.userName);
 			socket.emit('AUTH_SUCCESS');
 		}
 		else {
 			socket.emit('AUTH_FAIL', JSON.stringify({ message: 'Wrong password' }));
 		}
 	}
-	
+
 }
 
 export default LoginAction;
