@@ -4,16 +4,23 @@ const saltRounds = 10;
 
 class User {
 
-	private _password: sring;
+	private static counter: number = 1;
+	private _id: number;
+	private _password: string;
 	private _token: string;
 
-	constructor(private _id: number, private _name: string) {
+	constructor(private _name: string) {
+		this._id = User.counter++;
 	}
 
 	public toJson(): object {
 		return {
 			name: this._name
 		}
+	}
+
+	public getId(): number {
+		return this._id;
 	}
 
 	public getName(): string {

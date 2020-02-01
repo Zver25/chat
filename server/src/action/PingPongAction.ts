@@ -2,12 +2,13 @@ import {Server, Socket} from "socket.io";
 
 import RequestAction from "./RequestAction";
 
-class PingPongAction implements RequestAction {
+class PingPongAction extends RequestAction {
 
 	public constructor(private io: Server, private socket: Socket) {
+		super();
 	}
 
-	action(request: any) {
+	doAction(request: any) {
 		this.socket.emit('PONG', request);
 	}
 
