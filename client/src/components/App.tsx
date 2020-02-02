@@ -32,9 +32,9 @@ class App extends React.Component<PropsFromRedux> {
 	};
 
 	render() {
-		const {login} = this.props;
+		const {login, register} = this.props;
 		return (
-			<AuthScreen onLogin={login}/>
+			<AuthScreen onLogin={login} onRegister={register}/>
 		);
 	}
 }

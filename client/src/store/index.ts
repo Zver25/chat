@@ -3,7 +3,7 @@ import {composeWithDevTools} from "redux-devtools-extension";
 
 import {messagesReducer} from "./Messages";
 import {pingMiddleware, pingPongReducer} from "./PingPong";
-import { loginMiddleware } from "./Auth";
+import { loginMiddleware, registerMiddleware } from "./Auth";
 
 const rootReducer = combineReducers({
 	messages: messagesReducer,
@@ -13,6 +13,7 @@ const rootReducer = combineReducers({
 const middleware = [
 	pingMiddleware,
 	loginMiddleware,
+	registerMiddleware,
 ];
 
 export type AppState = ReturnType<typeof rootReducer>;

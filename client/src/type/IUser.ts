@@ -1,3 +1,5 @@
 export default interface IUser {
-	name: string
+	id: number,
+	name: string,
+	token: string
 }
