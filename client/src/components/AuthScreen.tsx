@@ -10,11 +10,12 @@ import './AuthScreen.css';
 
 
 interface AuthScreenProps {
-	onLogin: Function
+	onLogin: (userName: string, password: string) => void,
+	onRegister: (userName: string, password: string) => void,
 }
 
 const AuthScreen: React.FC<AuthScreenProps> = (props: AuthScreenProps) => {
-	const {onLogin} = props;
+	const {onLogin, onRegister} = props;
 	const [userName, setUserName] = useState('');
 	const [password, setPassword] = useState('');
 	return (
@@ -35,9 +36,15 @@ const AuthScreen: React.FC<AuthScreenProps> = (props: AuthScreenProps) => {
 							value={password} onChange={(e) => setPassword(e.target.value)}/>
 					</FormControl>
 				</Grid>
-				<Grid item container justify="center" direction="row">
-					<Button variant="contained" color="primary" 
-						onClick={() => onLogin(userName, password)}>Login</Button>
+				<Grid item container justify="center" direction="row" spacing={2}>
+					<Grid item>
+						<Button variant="contained" color="primary" 
+							onClick={() => onLogin(userName, password)}>Login</Button>
+					</Grid>
+					<Grid item>
+						<Button variant="contained" color="primary" 
+							onClick={() => onRegister(userName, password)}>Register</Button>
+					</Grid>
 				</Grid>
 			</Grid>
 		</Paper>
