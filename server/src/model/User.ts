@@ -11,11 +11,14 @@ class User {
 
 	constructor(private _name: string) {
 		this._id = User.counter++;
+		this._token = '';
 	}
 
 	public toJson(): object {
 		return {
-			name: this._name
+			id: this._id,
+			name: this._name,
+			token: this._token
 		}
 	}
 

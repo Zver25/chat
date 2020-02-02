@@ -27,11 +27,11 @@ class RegisterAction extends RequestAction {
 		} catch (e) {
             user = new User(request.userName);
             user.setPassword(request.password);
+            userDB.add(user);
             this.connectionController.setUser(user);
             server.emit('USER_CONNECTED', request.userName);
-			socket.emit('REGISTER_SUCCESS', JSON.stringify(user.toJson()));
+            socket.emit('REGISTER_SUCCESS', JSON.stringify(user.toJson()));
 		}
-
     }
     
 }

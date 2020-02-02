@@ -18,16 +18,16 @@ class UserDB {
 				return this.users[i];
 			}
 		}
-		throw 'Not found';
+		throw 'User not found';
 	}
 
-	public findByName(name: string): User {
+	public findByName(userName: string): User {
 		for (let i = 0; i < this.users.length; i++) {
-			if (this.users[i].getName() === name) {
+			if (this.users[i].getName() === userName) {
 				return this.users[i];
 			}
 		}
-		throw 'Not found';
+		throw 'User not found';
 	}
 
 }
