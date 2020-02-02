@@ -1,17 +1,15 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 
-import {messagesReducer} from "./Messages";
-import {pingMiddleware, pingPongReducer} from "./PingPong";
-import { loginMiddleware, registerMiddleware } from "./Auth";
+import {chatReducer} from "./Chat";
+import {authReducer, loginMiddleware, registerMiddleware} from "./Auth";
 
 const rootReducer = combineReducers({
-	messages: messagesReducer,
-	pingPong: pingPongReducer,
+	auth: authReducer,
+	chat: chatReducer,
 });
 
 const middleware = [
-	pingMiddleware,
 	loginMiddleware,
 	registerMiddleware,
 ];

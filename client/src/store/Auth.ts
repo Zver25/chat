@@ -1,7 +1,8 @@
 import IUser from "../type/IUser";
-import {EAuthActionTypes, TAuthActionTypes} from "../actions/AuthActions";
+import {EAuthActionTypes, TAuthActionTypes, loginSuccess, loginFail, registerSuccess, registerFail} from "../actions/AuthActions";
 import { MiddlewareAPI, Dispatch } from "redux";
 import socket from "./socket";
+import { store } from ".";
 
 export interface IAuthState {
 	user: IUser | undefined,
@@ -22,7 +23,6 @@ export const loginMiddleware = (api: MiddlewareAPI) => (next: Dispatch) => (acti
 			password: action.password
 		};
 		socket.emit(EAuthActionTypes.LOGIN, JSON.stringify(params));
-		return;
 	}
 	return next(action);
 };
@@ -34,12 +34,28 @@ export const registerMiddleware = (api: MiddlewareAPI) => (next: Dispatch) => (a
 			password: action.password
 		};
 		socket.emit(EAuthActionTypes.REGISTER, JSON.stringify(params));
-		return;
 	}
 	return next(action);
 };
 
+socket.on(EAuthActionTypes.LOGIN_SUCCESS, (user: IUser) => {
+	store.dispatch(loginSuccess(user));
+});
+
+socket.on(EAuthActionTypes.LOGIN_FAIL, (error: string) => {
+	store.dispatch(loginFail(error));
+});
+
+socket.on(EAuthActionTypes.REGISTER_SUCCESS, (user: IUser) => {
+	store.dispatch(registerSuccess(user));
+});
+
+socket.on(EAuthActionTypes.REGISTER_FAIL, (error: string) => {
+	store.dispatch(registerFail(error));
+});
+
 export const authReducer = (state = initialState, action: TAuthActionTypes): IAuthState => {
+	console.log(action);
 	switch (action.type) {
 		case EAuthActionTypes.LOGIN:
 			return {

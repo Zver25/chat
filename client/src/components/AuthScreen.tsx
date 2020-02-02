@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 
 import './AuthScreen.css';
 
-
 interface AuthScreenProps {
 	onLogin: (userName: string, password: string) => void,
 	onRegister: (userName: string, password: string) => void,
