@@ -8,6 +8,7 @@ import LoginAction from "../action/LoginAction";
 import MessageAction from "../action/MessageAction";
 import RequestAction from "../action/RequestAction";
 import LogoutAction from "../action/LogoutAction";
+import RegisterAction from "../action/RegisterAction";
 
 class WebSocketController {
 
@@ -16,6 +17,7 @@ class WebSocketController {
 	public constructor(private io: Server, private socket: Socket, private userDB: UserDB, private messagesDB: MessagesDB) {
 		this.addAction('PING', new PingPongAction(io, socket));
 		this.addAction('LOGIN', new LoginAction(this));
+		this.addAction('REGISTER', new RegisterAction(this));
 		this.addAction('LOGOUT', new LogoutAction(this));
 		this.addAction('SEND_MESSAGE', new MessageAction(this));
 	}
