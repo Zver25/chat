@@ -2,27 +2,27 @@ import IMessage from "../type/IMessage";
 
 export enum EChatActionTypes {
 	SEND_MESSAGE = 'SEND_MESSAGE',
-	RECEIVE_MESSAGE = 'RECEIVE_MESSAGE'
+	MESSAGE = 'MESSAGE',
 }
 
 interface ISentMessage {
 	type: typeof EChatActionTypes.SEND_MESSAGE,
-	message: string
+	text: string
 }
 
 interface IReceiveMessage {
-	type: typeof EChatActionTypes.RECEIVE_MESSAGE,
+	type: typeof EChatActionTypes.MESSAGE,
 	message: IMessage
 }
 
 export type TChatActionTypes = ISentMessage | IReceiveMessage;
 
-export const sendMessage = (message: string): ISentMessage => ({
+export const sendMessage = (text: string): ISentMessage => ({
 	type: EChatActionTypes.SEND_MESSAGE,
-	message
+	text
 });
 
 export const receiveMessage = (message: IMessage): IReceiveMessage => ({
-	type: EChatActionTypes.RECEIVE_MESSAGE,
+	type: EChatActionTypes.MESSAGE,
 	message
 });

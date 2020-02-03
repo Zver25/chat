@@ -1,7 +1,7 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 
-import {chatReducer} from "./Chat";
+import {chatReducer, sendMessageMiddleware} from "./Chat";
 import {authReducer, loginMiddleware, registerMiddleware} from "./Auth";
 
 const rootReducer = combineReducers({
@@ -12,6 +12,7 @@ const rootReducer = combineReducers({
 const middleware = [
 	loginMiddleware,
 	registerMiddleware,
+	sendMessageMiddleware,
 ];
 
 export type AppState = ReturnType<typeof rootReducer>;

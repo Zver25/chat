@@ -55,7 +55,6 @@ socket.on(EAuthActionTypes.REGISTER_FAIL, (error: string) => {
 });
 
 export const authReducer = (state = initialState, action: TAuthActionTypes): IAuthState => {
-	console.log(action);
 	switch (action.type) {
 		case EAuthActionTypes.LOGIN:
 			return {

@@ -26,8 +26,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 class App extends React.Component<PropsFromRedux> {
 
 	render() {
-		const {auth, chat, login, register} = this.props;
-		console.log(auth);
+		const {auth, chat, login, register, sendMessage} = this.props;
 		if (auth.user) {
 			return <ChatScreen messages={chat.messages} onSendMessage={sendMessage}/>
 		}
