@@ -30,7 +30,7 @@ class LoginAction extends RequestAction {
 		if (user.checkPassword(request.password)) {
 			this.connectionController.setUser(user);
 			server.emit('USER_CONNECTED', request.userName);
-			socket.emit('LOGIN_SUCCESS');
+			socket.emit('LOGIN_SUCCESS', user.toJson());
 		}
 		else {
 			socket.emit('LOGIN_FAIL', JSON.stringify({ message: 'Wrong password' }));
