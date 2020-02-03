@@ -3,7 +3,7 @@ import Message from "../model/Message";
 import RequestAction from "./RequestAction";
 
 interface MessageParams {
-	message: string
+	text: string
 }
 
 class MessageAction extends RequestAction {
@@ -18,9 +18,9 @@ class MessageAction extends RequestAction {
 		const user = this.connectionController.getUser();
 		const messagesDB = this.connectionController.getMessagesDB();
 		if (user) {
-			const message: Message = new Message(user, request.message);
+			const message: Message = new Message(user, request.text);
 			messagesDB.add(message);
-			server.emit('RECEIVE_MESSAGE', message.toJson());
+			server.emit('MESSAGE', message.toJson());
 		}
 		else {
 			socket.emit('ERROR','Not authorized');

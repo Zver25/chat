@@ -4,6 +4,8 @@ import RequestAction from "./RequestAction";
 import WebSocketController from "../controller/WebSocketController";
 import UserDB from "../model/UserDB";
 import User from "../model/User";
+import MessagesDB from "../model/MessagesDB";
+import Message from "../model/Message";
 
 interface ILoginParams {
 	userName: string,
@@ -20,6 +22,7 @@ class LoginAction extends RequestAction {
 		const userDB: UserDB = this.connectionController.getUserDB();
 		const server: Server = this.connectionController.getServer();
 		const socket: Socket = this.connectionController.getSocket();
+		const messagesDB: MessagesDB = this.connectionController.getMessagesDB()
 		let user: User;
 		try {
 			user = userDB.findByName(request.userName);
@@ -29,7 +32,9 @@ class LoginAction extends RequestAction {
 		}
 		if (user.checkPassword(request.password)) {
 			this.connectionController.setUser(user);
-			server.emit('USER_CONNECTED', request.userName);
+			const message: Message = new Message(undefined, `${user.getName()} connected`);
+			messagesDB.add(message);
+			server.emit('MESSAGE', message.toJson());
 			socket.emit('LOGIN_SUCCESS', user.toJson());
 		}
 		else {

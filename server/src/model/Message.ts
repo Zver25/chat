@@ -3,14 +3,14 @@ import User from "./User";
 class Message {
 
 	private readonly _time: number;
-	constructor(private _user: User, private _message: string) {
+	constructor(private _user: User, private _text: string) {
 		this._time = Date.now();
 	}
 
 	public toJson(): object {
 		return {
-			user: this._user.toJson(),
-			message: this._message,
+			user: this._user ? this._user.toJson() : undefined,
+			text: this._text,
 			time: this._time
 		};
 	}
@@ -20,7 +20,7 @@ class Message {
 	}
 
 	public getMessage(): string {
-		return this._message;
+		return this._text;
 	}
 
 	public getTime():number {
