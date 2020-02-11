@@ -3,4 +3,19 @@ body,
 #root,
 .chat-screen {
     height: 100%;
-} 
+}
+
+.chat-screen {
+    box-sizing: border-box;
+    padding: 16px;
+}
+.messages {
+    flex-grow: 1;
+}
+.paper {
+    padding: 16px;
+}
+.messages .paper {
+    height: 100%;
+    box-sizing: border-box;
+}
